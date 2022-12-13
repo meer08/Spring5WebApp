@@ -1,4 +1,5 @@
 package springframework.udemy.Spring5WebApp.domain;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +12,19 @@ public class Book
     private long id;
     private String title;
     private String isbn;
+
+
+    //Many books, one publisher.
+    @ManyToOne
+    private Publisher publisher;
+
+    public Publisher getPbr() {
+        return publisher;
+    }
+
+    public void setPbr(Publisher publisher) {
+        this.publisher = publisher;
+    }
 
     @ManyToMany()
     @JoinTable(name="author_book", joinColumns = @JoinColumn(name = "book_id"),
